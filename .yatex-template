@@ -1,0 +1,96 @@
+\documentclass[a4paper, 12pt]{jarticle}
+
+% ------  Preamble  ------
+% パッケージ追加
+\usepackage{amsmath,amssymb,amsthm}  % 数学記号を使えるようにする
+\usepackage{makeidx}                 % 索引を作る
+\usepackage[dvipdfmx]{graphicx}      % PDF化する
+\usepackage{url}                     % LaTeXでURLを書く
+\usepackage{bm}                      % 太字ベクトルを書く
+\usepackage{mathtools}               % 参照した数式のみ式番号をつける
+\usepackage{booktabs}	             % 表の線をきれいにする
+\usepackage{float}                   % begin{figure}[H] を使えるようにする
+\usepackage{listings,jlisting}       % ソースコードを書く
+\usepackage[dvipdfmx]{hyperref}      % 目次にアンカーをつける
+\usepackage{pxjahyper}               % Tabを何文字幅にするかの指定
+
+% 定理, 定義などの環境定義
+\newtheorem{theo}{定理}
+\newtheorem{defi}[theo]{定義}
+\newtheorem{prop}[theo]{命題}
+\newtheorem{lemm}[theo]{補題}
+\newtheorem{coro}[theo]{系}
+\renewcommand\proofname{\textbf {証明}}
+
+% \begin{prac}
+% \begin{enumerate}
+% \item aaa
+% \end{enumerate}
+% \end{prac}
+% としたときに \item をローマン体にする
+\theoremstyle{definition}
+\newtheorem{prac}[theo]{練習}
+\newtheorem{expl}[theo]{例題}
+
+% 表と数式の番号を 章.通し にする
+\numberwithin{table}{section}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{theo}{section}
+
+% 参照した数式のみ式番号をつける
+\mathtoolsset{showonlyrefs=true}
+
+% コードを書く
+\lstset{
+    basicstyle={\ttfamily\small}, % 書体の指定
+    frame={tb},                   % フレームの指定
+    framesep=10pt,                % フレームと中身（コード）の間隔
+    breaklines=true,              % 行が長くなった場合の改行
+    linewidth=12cm,               % フレームの横幅
+    lineskip=-0.5ex,              % 行間の調整
+    numbers=left,                 % 行番号を左に表示
+    stepnumber=1,                 % 行番号の間隔
+    tabsize=4                     % Tabを何文字幅にするかの指定
+}
+\renewcommand{\lstlistingname}{コード} % キャプション名を「コード」に変更
+% 番号を章.通し にする
+\makeatletter
+    \AtBeginDocument{
+    \renewcommand*{\thelstlisting}{\arabic{section}.\arabic{lstlisting}}
+    \@addtoreset{lstlisting}{section}}
+\makeatother
+
+% 追加コマンド
+\newcommand{\RED}[1]{\textcolor{red}{#1}}
+\newcommand{\worddefi}[2]{\index{#1@#2}\textbf{#2}}
+% \newcommand{\transpose}[1]{{}^{t}\!{#1}}
+\newcommand{\transpose}[1]{\,{\vphantom{#1}}^t\!#1}  % 転置の t を書く
+\newcommand{\Hom}{\operatorname{Hom}}                % $\Hom_{R}(M, N)$のように使う
+
+% 目次
+\makeindex
+
+\title{タイトル}
+\author{氏 名}
+\date{\empty}
+
+% 段落の最初の一文字のインデントを 0 に
+\parindent = 0pt
+% ------  End Preamble  ------
+
+\begin{document}
+
+% タイトル表示
+\maketitle
+
+% 目次
+\tableofcontents
+\newpage
+
+% sec1-3.texを読み込む
+% \include{sec1-3}
+
+% 索引
+\printindex
+\end{document}
